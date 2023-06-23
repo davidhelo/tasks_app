@@ -31,7 +31,7 @@ function Overview(props) {
 
     return (
       <div>
-          {tasksList.length > 0 ? <h3>List of tasks:</h3> : <h3></h3> }
+          {tasksList.length > 0 ? <h3>List of tasks:</h3> : <h3>No tasks pending! </h3> }
           <div>
             {tasksList}
           </div>

@@ -71,7 +71,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App-container">
-        <h1 >To Do list :</h1>
+        <h1 >To Do list </h1>
             <InputText 
               id="txtNewTask" 
               type="text"
