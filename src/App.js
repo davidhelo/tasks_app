@@ -6,12 +6,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       text: '',
-      tasks: []
+      tasks: [], // tasks: [ { taskText: '', taskCompleted: false, taskId: 0 }, ... ]
+      currentId: 0
     }
 
     this.onClick = this.onClick.bind(this); 
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
+    this.toggleTask = this.toggleTask.bind(this);
+    this.delTask = this.delTask.bind(this);
   }
 
   onKeyDown(k) {
@@ -20,9 +23,9 @@ class App extends React.Component {
     } 
   }
 
-  onChange(e) {
+  onChange(event) {
     this.setState({
-      text: e.target.value
+      text: event.target.value
     })
   }
 
@@ -32,9 +35,32 @@ class App extends React.Component {
       return undefined;
     }
     this.setState((currentState)  => ({
-          tasks: [...currentState.tasks, currentState.text],
-          text: ''
+          text: '',
+          tasks: [...currentState.tasks, {taskText: currentState.text, taskCompleted: false, taskId: currentState.currentId+1}],
+          currentId: currentState.currentId + 1
         })
+    );
+  }
+
+  toggleTask(Id) {
+    let tasksList = this.state.tasks;
+    let taskIndexToToggle = tasksList.findIndex(task => task.taskId === Id);
+    tasksList[taskIndexToToggle].taskCompleted = !tasksList[taskIndexToToggle].taskCompleted;
+
+    this.setState((currentState)  => ({
+        tasks: tasksList
+      })
+    );
+  }
+
+  delTask(Id) {
+    let tasksList = this.state.tasks;
+    let taskIndexToDelete = tasksList.findIndex(task => task.taskId === Id);
+    tasksList.splice(taskIndexToDelete, 1);
+
+    this.setState((currentState)  => ({
+        tasks: tasksList
+      })
     );
   }
 
@@ -57,7 +83,7 @@ class App extends React.Component {
             onClick={this.onClick}
             >Add task</button> 
         <hr></hr>
-        <Overview tasks={this.state.tasks} />
+        <Overview tasks={this.state.tasks} toggleTask={this.toggleTask} delTask={this.delTask} />
       </div>
     );
   }
