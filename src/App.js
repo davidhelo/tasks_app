@@ -1,5 +1,9 @@
 import React from "react";
 import Overview from "./Overview.js";
+import "./App.css";
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'primereact/button';
+        
 
 class App extends React.Component {
   constructor(props) {
@@ -66,24 +70,27 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Tasks list:</h1>
-        <label htmlFor="txtNewTask"></label>
-          <input 
-            id="txtNewTask" 
-            type="text" 
-            placeholder="Enter new task..." 
-            value={this.state.text}
-            onKeyDown={this.onKeyDown}
-            onChange={this.onChange}>
-          </input>
-          <button 
-            id="txtNewTask" 
-            type="button" 
-            onClick={this.onClick}
-            >Add task</button> 
-        <hr></hr>
+      <div className="App-container">
+        <h1 >To Do list :</h1>
+            <InputText 
+              id="txtNewTask" 
+              type="text"
+              placeholder="Enter new task..." 
+              value={this.state.text}
+              onKeyDown={this.onKeyDown}
+              onChange={this.onChange}
+            />
+
+            <Button
+              type="button"
+              label="+ add task"
+              id="btnNewTask"
+              onClick={this.onClick}
+              raised
+            />
+
         <Overview tasks={this.state.tasks} toggleTask={this.toggleTask} delTask={this.delTask} />
+        <footer >Created by <a target="_blank" href="https://github.com/davidhelo">davidhelo</a></footer>
       </div>
     );
   }
