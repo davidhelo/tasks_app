@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+}
+
 h1, h3 {
   font-family: 'Permanent Marker', cursive;
 }
@@ -28,16 +36,16 @@ h1, h3 {
   min-width: 80%;
 }
 
+.lineThrouhLabel {
+  text-decoration: line-through;
+}
+
 .btnDelete {
   flex-grow: 1;
   min-width: 10%;
   max-width: 10%;
   border: none;
   background-color: white;
-}
-
-.btnAddTask {
-  
 }
 
 .card {

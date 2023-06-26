@@ -17,7 +17,7 @@ function Overview(props) {
               className="btnDelete"
               onClick={() => props.delTask(item.taskId)}
           ><FontAwesomeIcon icon={faTrash} /></button>
-      <label className="labelcheckBox" for={"taskCheck" + item.taskId}>&emsp; {item.taskText} </label>
+      <label className={item.taskCompleted ? "labelcheckBox lineThrouhLabel" : "labelcheckBox"} for={"taskCheck" + item.taskId}>&emsp; {item.taskText} </label>
       <input type="checkbox" 
               id={"taskCheck" + item.taskId} 
               name={"taskCheck" + item.taskId} 
